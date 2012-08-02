@@ -1,56 +1,57 @@
 package gowall
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"encoding/json"
 )
 
+// Coderwall API URL
 const coderwallApiUrl = "http://coderwall.com/%s.json"
 
+// Badge type representing user badges
 type Badge struct {
-	badge       string
-	created     string
-	description string
-	name        string
+	Badge       string
+	Created     string
+	Description string
+	Name        string
 }
 
+// User type representing the user profile
 type User struct {
-	endorsements string
-	location     string
-	name         string
-	team         string
-	username     string
-	accounts     []string
-	badges       []Badge
+	Endorsements int
+	Location     string
+	Name         string
+	Team         string
+	Username     string
+	Accounts     map[string]interface{}
+	Badges       []Badge
 }
 
-func fetchUser(username string) (body []byte, err error) {
+// Performs the low-level HTTP GET request to the API to fetch the user profile data.
+func fetch(username string) (body []byte, err error) {
 	response, err := http.Get(fmt.Sprintf(coderwallApiUrl, username))
-	defer response.Body.Close()
-
 	if err != nil {
-		fmt.Errorf("Could not fetch user, %s, from Coderwall.", username)
 		return
 	}
+	defer response.Body.Close()
 
 	body, err = ioutil.ReadAll(response.Body)
 
 	return
 }
 
-func GetUser(username string) (user User, err error) {
-	userResponse, err := fetchUser(username)
+// Fetches the user data and parses the JSON into the User type.
+func FetchUser(username string) (user User, err error) {
+	userResponse, err := fetch(username)
 	if err != nil {
-		fmt.Errorf("Could not fetch user, %s, from Coderwall.", username)
-		return
+		return user, fmt.Errorf("Could not fetch user, %s, from Coderwall: %s", username, err)
 	}
 
 	err = json.Unmarshal(userResponse, &user)
 	if err != nil {
-		fmt.Errorf("Could not parse JSON response.")
-		return
+		return user, fmt.Errorf("Could not parse JSON: %s", err)
 	}
 
 	return
