@@ -21,6 +21,11 @@ Fetch your user details:
 
 See main.go for an example.
 
+## Documentation
+
+View the documentation on
+[GoPkgDoc](http://go.pkgdoc.org/github.com/NickPresta/go-wall/gowall).
+
 ## Changelog
 
 See `CHANGELOG.md` for details.
