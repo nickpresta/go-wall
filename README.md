@@ -19,7 +19,7 @@ Fetch your user details:
     user, err := gowall.FetchUser("NickPresta")
     /* Do something with user */
 
-See main.go for an example.
+See `main.go` for an example.
 
 ## Documentation
 
