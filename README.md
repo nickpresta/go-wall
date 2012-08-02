@@ -1,6 +1,6 @@
 # gowall
 
-A simple Go implementation of the Coderwall API (http://coderwall.com/api)
+A simple Go implementation of the Coderwall API (http://coderwall.com/api).
 
 ## Getting the Code
 
@@ -34,4 +34,4 @@ See `CHANGELOG.md` for details.
 
 This is released under the
 [MIT license](http://www.opensource.org/licenses/mit-license.php).
-See `LICENSE.md` file for details.
+See `LICENSE.md` for details.
