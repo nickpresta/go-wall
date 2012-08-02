@@ -1,7 +1,7 @@
 package main
 
 import (
-	"https://github.com/NickPresta/gowall"
+	"github.com/NickPresta/gowall/gowall"
 )
 
 func main() {
