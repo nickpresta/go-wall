@@ -17,10 +17,17 @@ func TestFetchUser(t *testing.T) {
 	for i, testcase := range fetchtest {
 		user, err := gowall.FetchUser(testcase.in)
 		if err != nil {
-			t.Errorf("%d. %s", i, err)
+			t.Errorf("%s", i, err)
 		}
 		if !reflect.DeepEqual(user, testcase.expected) {
-			t.Errorf("%d. %+v != %+v", i, testcase.expected, user)
+			t.Errorf("%+v != %+v", i, testcase.expected, user)
 		}
+	}
+}
+
+func TestFetchUserDoesNotExist(t *testing.T) {
+	_, err := gowall.FetchUser("thisuserdoesnotexistandshouldneverexisthopefully")
+	if err == nil {
+		t.Errorf("FetchUser() should have returned with an error.")
 	}
 }

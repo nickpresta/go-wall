@@ -38,6 +38,10 @@ func fetch(username string) (body []byte, err error) {
 	}
 	defer response.Body.Close()
 
+	if response.StatusCode == http.StatusNotFound {
+		return body, fmt.Errorf("404 -- Could not find user")
+	}
+
 	body, err = ioutil.ReadAll(response.Body)
 
 	return
