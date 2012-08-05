@@ -7,10 +7,10 @@ import (
 	"net/http"
 )
 
-// Coderwall API URL
+// Coderwall API URL.
 const coderwallApiUrl = "http://coderwall.com/%s.json"
 
-// Badge type representing user badges
+// Badge type representing user badges.
 type Badge struct {
 	Badge       string
 	Created     string
@@ -18,14 +18,14 @@ type Badge struct {
 	Name        string
 }
 
-// User type representing the user profile
+// User type representing the user profile.
 type User struct {
 	Endorsements int
 	Location     string
 	Name         string
 	Team         string
 	Username     string
-	Accounts     map[string]interface{}
+	Accounts     map[string]string
 	Badges       []Badge
 }
 

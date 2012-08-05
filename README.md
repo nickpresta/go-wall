@@ -26,6 +26,10 @@ See `main.go` for an example.
 View the documentation on
 [GoPkgDoc](http://go.pkgdoc.org/github.com/NickPresta/go-wall/gowall).
 
+## Tests
+
+A very simple test is available via `go test`.
+
 ## Changelog
 
 See `CHANGELOG.md` for details.

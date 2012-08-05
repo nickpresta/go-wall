@@ -17,9 +17,9 @@ func main() {
 	fmt.Println("Endorsements:", user.Endorsements)
 	fmt.Println("Team:", user.Team)
 
-	fmt.Println("\nAccounts:")
-	for key, val := range user.Accounts {
-		fmt.Printf("\t%s: %s\n", key, val)
+	fmt.Printf("\nAccounts (%d):\n", len(user.Accounts))
+	for account, name := range user.Accounts {
+		fmt.Printf("\t%s: %s\n", account, name)
 	}
 
 	fmt.Printf("\nBadges (%d):\n", len(user.Badges))
