@@ -31,33 +31,34 @@ type User struct {
 }
 
 // Performs the low-level HTTP GET request to the API to fetch the user profile data.
-func fetch(username string) (body []byte, err error) {
+func fetch(username string) ([]byte, error) {
 	response, err := http.Get(fmt.Sprintf(coderwallApiUrl, username))
 	if err != nil {
-		return
+		return []byte{}, err
 	}
 	defer response.Body.Close()
 
 	if response.StatusCode == http.StatusNotFound {
-		return body, fmt.Errorf("404 -- Could not find user")
+		return []byte{}, fmt.Errorf("404 -- Could not find user")
 	}
 
-	body, err = ioutil.ReadAll(response.Body)
+	body, err := ioutil.ReadAll(response.Body)
 
-	return
+	return body, err
 }
 
 // Fetches the user data and parses the JSON into the User type.
-func FetchUser(username string) (user User, err error) {
+func FetchUser(username string) (User, error) {
 	userResponse, err := fetch(username)
 	if err != nil {
-		return user, fmt.Errorf("Could not fetch user, %s, from Coderwall: %s", username, err)
+		return User{}, fmt.Errorf("Could not fetch user, %s, from Coderwall: %s", username, err)
 	}
 
+	user := User{}
 	err = json.Unmarshal(userResponse, &user)
 	if err != nil {
 		return user, fmt.Errorf("Could not parse JSON: %s", err)
 	}
 
-	return
+	return user, err
 }
