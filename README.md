@@ -2,8 +2,8 @@
 
 A simple Go implementation of the Coderwall API (http://coderwall.com/api).
 
-Current build status: <a href="http://goci.me/project/go-wall/gowall">
-    <img src="http://goci.me/project/image/go-wall/gowall" />
+Current build status: <a href="http://goci.me/project/github.com/NickPresta/go-wall">
+    <img src="http://goci.me/project/image/github.com/NickPresta/go-wall" />
 </a>
 
 ## Getting the Code
